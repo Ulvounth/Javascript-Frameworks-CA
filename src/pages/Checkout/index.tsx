@@ -54,19 +54,19 @@ const CheckoutProductsSection = styled.div`
 `;
 
 const CheckoutContinueShoppingSection = styled.div`
-  background-color: #fff;
-  padding: 1em;
+  padding: 1em 0;
 `;
 
 const CheckoutContinueShoppingLink = styled(HashLink)`
   text-decoration: none;
-  color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--bg-purple);
 `;
 
 const Checkout = () => {
   const cart = useContext(CartContext);
-
-  console.log(cart);
 
   useDocumentTitle('Infinity Goods | Checkout');
 

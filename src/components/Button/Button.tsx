@@ -16,14 +16,24 @@ const StyledPrimaryButton = styled.button<{ $fullWidth?: boolean }>`
   }
 `;
 
+type ButtonType = 'button' | 'submit' | 'reset' | undefined;
+
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+  type?: ButtonType;
   children?: React.ReactNode;
   fullWidth?: boolean;
 }
 
-const Button = ({ children, fullWidth = false }: ButtonProps) => {
+const Button = ({
+  type = 'button',
+  children,
+  fullWidth = false,
+  ...restProps
+}: ButtonProps) => {
   return (
-    <StyledPrimaryButton $fullWidth={fullWidth}>{children}</StyledPrimaryButton>
+    <StyledPrimaryButton type={type} $fullWidth={fullWidth} {...restProps}>
+      {children}
+    </StyledPrimaryButton>
   );
 };
 

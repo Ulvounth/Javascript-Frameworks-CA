@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Tag from '../../components/Tag/Tag';
 import { Link } from 'react-router-dom';
 import StarRating from '../../components/StarRating';
+import calculateDiscountedPrice from '../../utils/calculateDiscount';
 
 export type TProduct = {
   id: string;
@@ -69,9 +70,12 @@ const StyledProductImage = styled.img`
 `;
 
 const StyledDescriptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 1em;
   background-color: #ffffffdb;
   color: black;
+  height: 10rem;
 `;
 
 const StyledTagsWrapper = styled.div`
@@ -86,8 +90,8 @@ const ReviewContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 0.875rem;
-  color: #666;
   justify-content: space-between;
+  margin-top: auto;
 `;
 
 const PriceText = styled.p`
@@ -96,7 +100,7 @@ const PriceText = styled.p`
   color: #333;
   font-size: 1rem;
 
-  &.discounted {
+  span.discounted {
     text-decoration: line-through;
     color: #777;
   }
@@ -104,11 +108,12 @@ const PriceText = styled.p`
 
 const PriceContainer = styled.div`
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
 `;
 
-const DiscountPriceText = styled.p`
+const DiscountPriceContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   color: #e53e3e;
   font-size: 1rem;
 `;
@@ -133,25 +138,37 @@ const Products = ({ products }: ProductsProps) => {
               </StyledProductImageWrapper>
               <StyledDescriptionWrapper>
                 <h3>{product.title}</h3>
-                <ReviewContainer>
-                  <StarRating rating={product.rating ?? 0} />
-                  <span>{product.reviews.length} reviews</span>
-                </ReviewContainer>
                 <PriceContainer>
                   {product.discountedPrice &&
                   product.discountedPrice < product.price ? (
                     <>
-                      <PriceText className="discounted">
-                        ${product.price.toFixed(2)}
+                      <DiscountPriceContainer>
+                        <span>${product.discountedPrice.toFixed(2)}</span>
+                        {product.price !== product.discountedPrice && (
+                          <span>
+                            {calculateDiscountedPrice(
+                              product.price,
+                              product.discountedPrice
+                            )}
+                            % OFF
+                          </span>
+                        )}
+                      </DiscountPriceContainer>
+                      <PriceText>
+                        Original price:{' '}
+                        <span className="discounted">
+                          ${product.price.toFixed(2)}
+                        </span>
                       </PriceText>
-                      <DiscountPriceText>
-                        ${product.discountedPrice.toFixed(2)}
-                      </DiscountPriceText>
                     </>
                   ) : (
                     <PriceText>${product.price.toFixed(2)}</PriceText>
                   )}
                 </PriceContainer>
+                <ReviewContainer>
+                  <StarRating rating={product.rating ?? 0} />
+                  <span>{product.reviews.length} reviews</span>
+                </ReviewContainer>
               </StyledDescriptionWrapper>
               <StyledTagsWrapper>
                 {product.tags?.map((tag) => <Tag key={tag} tag={tag} />)}

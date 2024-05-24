@@ -60,7 +60,6 @@ const SearchProductInput = ({ products }: SearchProductInputProps) => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-  console.log(filteredResults);
 
   return (
     <StyledSearchProductInputWrapper className="filtered-products">

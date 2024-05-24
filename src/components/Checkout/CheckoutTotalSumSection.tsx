@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from '../Button/Button';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutTotalSum = styled.div`
   background-color: #fff;
@@ -42,16 +42,12 @@ const CheckoutTotalSumList = styled.ul`
   }
 `;
 
-const CheckoutTotalSumButtonLink = styled(Link)`
-  text-decoration: none; // Remove underline from link
-  color: inherit; // Inherit text color from parent
-`;
-
 const CheckoutTotalSumButton = styled(Button)``;
 
 const CheckoutTotalSumSection = () => {
+  const navigate = useNavigate();
+
   const cart = useContext(CartContext);
-  console.log(cart);
 
   const totalSum =
     cart?.reduce((acc, product) => {
@@ -60,6 +56,12 @@ const CheckoutTotalSumSection = () => {
         : product.price;
       return acc + price * product.quantity;
     }, 0) || 0;
+
+  const handleOnCheckoutClicked = () => {
+    if (cart?.length === 0) return;
+
+    navigate('/checkoutSuccess');
+  };
 
   return (
     <CheckoutTotalSum>
@@ -74,9 +76,9 @@ const CheckoutTotalSumSection = () => {
               <span>${totalSum.toFixed(2)}</span>
             </li>
           </CheckoutTotalSumList>
-          <CheckoutTotalSumButtonLink to="/checkoutSuccess">
-            <CheckoutTotalSumButton fullWidth>Checkout</CheckoutTotalSumButton>
-          </CheckoutTotalSumButtonLink>
+          <CheckoutTotalSumButton onClick={handleOnCheckoutClicked} fullWidth>
+            Checkout
+          </CheckoutTotalSumButton>
         </CheckoutTotalSumContent>
       </CheckoutTotalSumSticky>
     </CheckoutTotalSum>

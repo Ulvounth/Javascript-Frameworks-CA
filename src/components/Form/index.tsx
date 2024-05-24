@@ -2,14 +2,21 @@ import { useState } from 'react';
 import Input from '../Input';
 import styled from 'styled-components';
 import Textarea from '../Textarea/Textarea';
+import {
+  validateEmail,
+  validateFullname,
+  validateMessage,
+  validateSubject,
+} from '../../utils/validation';
 
 const Container = styled.div`
   width: 100%;
   max-width: 700px;
   margin: auto;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-tertiary);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 2em;
+  color: white;
 `;
 
 const StyledForm = styled.form`
@@ -33,11 +40,6 @@ const SubmitButton = styled.button`
   }
 `;
 
-const validateEmail = (email: string) => {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-};
-
 const Form = () => {
   const [formData, setFormData] = useState({
     fullname: '',
@@ -53,6 +55,15 @@ const Form = () => {
     message: true,
   });
 
+  const canProceed = () => {
+    return (
+      validateSubject(formData.subject) &&
+      validateFullname(formData.fullname) &&
+      validateEmail(formData.email) &&
+      validateMessage(formData.message)
+    );
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -63,14 +74,17 @@ const Form = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(validateEmail(formData.email));
     setFormValidation((prev) => {
       return {
         ...prev,
-        fullname: formData.fullname.length > 3,
+        subject: validateSubject(formData.subject),
+        fullname: validateFullname(formData.fullname),
         email: validateEmail(formData.email),
+        message: validateMessage(formData.message),
       };
     });
+
+    if (canProceed()) console.log(formData);
   };
 
   return (
