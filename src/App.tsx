@@ -7,6 +7,7 @@ import {
   CartDispatchContext,
   cartReducer,
 } from './context/CartContext';
+import { ToastProvider } from './context/ToastContext';
 import { useReducer } from 'react';
 import { ProductsContext } from './context/ProductsContext';
 import { useFetch } from './hooks/useFetch';
@@ -33,21 +34,23 @@ const App = () => {
   if (isError) return <div>Error</div>;
 
   return (
-    <ProductsContext.Provider value={products}>
-      <CartContext.Provider value={cart}>
-        <CartDispatchContext.Provider value={dispatch}>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/checkoutSuccess" element={<CheckoutSuccess />} />
-            </Route>
-          </Routes>
-        </CartDispatchContext.Provider>
-      </CartContext.Provider>
-    </ProductsContext.Provider>
+    <ToastProvider>
+      <ProductsContext.Provider value={products}>
+        <CartContext.Provider value={cart}>
+          <CartDispatchContext.Provider value={dispatch}>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/checkoutSuccess" element={<CheckoutSuccess />} />
+              </Route>
+            </Routes>
+          </CartDispatchContext.Provider>
+        </CartContext.Provider>
+      </ProductsContext.Provider>
+    </ToastProvider>
   );
 };
 

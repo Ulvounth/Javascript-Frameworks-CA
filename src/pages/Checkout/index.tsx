@@ -44,6 +44,7 @@ const CheckoutContainer = styled.section`
 
   @media screen and (max-width: 1005px) {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 `;
 
@@ -82,7 +83,8 @@ const Checkout = () => {
           </CheckoutProductsHeader>
           {cart?.map((product) => {
             return <Product key={product.id} product={product} />;
-          })}
+          })}{' '}
+          {cart?.length === 0 && <p>Your cart is empty.</p>}
           <CheckoutContinueShoppingSection>
             <CheckoutContinueShoppingLink to="/#store">
               Continue Shopping

@@ -3,9 +3,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Outlet } from 'react-router-dom';
 
-const MainContent = styled.main`
-  background-color: white;
-`;
+const MainContent = styled.main``;
 
 const StyledOutlet = styled(Outlet)`
   max-width: 1440px;

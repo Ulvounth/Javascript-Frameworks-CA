@@ -6,6 +6,9 @@ import { CartDispatchContext } from '../../context/CartContext';
 const SuccessContainer = styled.div`
   text-align: center;
   padding-top: 50px;
+  @media screen and (max-width: 1005px) {
+    padding: 200px 0;
+  }
 `;
 
 const SuccessMessage = styled.h1`

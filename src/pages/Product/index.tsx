@@ -6,6 +6,7 @@ import StarRating from '../../components/StarRating';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import Loader from '../../components/Loader';
 import { CartContext, CartDispatchContext } from '../../context/CartContext';
+import { useToast } from '../../context/ToastContext';
 import { useContext } from 'react';
 
 const StyledSection = styled.section`
@@ -102,6 +103,7 @@ const Product = () => {
   const { id } = useParams();
   const dispatch = useContext(CartDispatchContext);
   const cart = useContext(CartContext);
+  const { showToast } = useToast();
 
   const productAlreadyExist = cart?.find((product) => product.id === id);
 
@@ -112,7 +114,10 @@ const Product = () => {
   const addToCart = () => {
     if (!data) return;
 
-    if (productAlreadyExist) return;
+    if (productAlreadyExist) {
+      showToast('Product already in your cart!', 'error');
+      return;
+    }
 
     dispatch({
       type: 'ADD_TO_CART',
@@ -121,6 +126,7 @@ const Product = () => {
         quantity: 1,
       },
     });
+    showToast('Added to cart successfully!', 'success');
   };
 
   useDocumentTitle(data ? `${data.title}` : 'Product');

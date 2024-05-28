@@ -3,10 +3,13 @@ import Button from '../Button/Button';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../../context/ToastContext';
 
 const CheckoutTotalSum = styled.div`
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  @media screen and (max-width: 1005px) {
+    margin: 1em 0;
 `;
 
 const CheckoutTotalSumSticky = styled.div`
@@ -46,6 +49,7 @@ const CheckoutTotalSumButton = styled(Button)``;
 
 const CheckoutTotalSumSection = () => {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const cart = useContext(CartContext);
 
@@ -58,7 +62,10 @@ const CheckoutTotalSumSection = () => {
     }, 0) || 0;
 
   const handleOnCheckoutClicked = () => {
-    if (cart?.length === 0) return;
+    if (cart?.length === 0) {
+      showToast('Please add a item in your cart!', 'error');
+      return;
+    }
 
     navigate('/checkoutSuccess');
   };

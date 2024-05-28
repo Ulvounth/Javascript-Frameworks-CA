@@ -15,18 +15,22 @@ const StyledSearchProductInputWrapper = styled.div`
 const StyledSearchProductInputList = styled.ul`
   position: absolute;
   background-color: white;
-  color: black;
   list-style: none;
+  margin-top: 10px;
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   > .filtered-products__list-item {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    border-bottom: 1px solid var(--bg-secondary);
 
     a {
-      display: inline-block;
+      display: grid;
       width: 100%;
-      padding: 1em;
+      padding: 5px;
       color: black !important;
+      text-decoration: none;
 
       &:hover {
         background-color: var(--bg-secondary);
@@ -73,8 +77,10 @@ const SearchProductInput = ({ products }: SearchProductInputProps) => {
         <StyledSearchProductInputList>
           {filteredResults?.map((product) => (
             <li className="filtered-products__list-item" key={product.id}>
-              <StyledImage src={product.imageUrl} alt={product.title} />
-              <Link to={`/product/${product.id}`}>{product.title}</Link>
+              <Link to={`/product/${product.id}`}>
+                <StyledImage src={product.imageUrl} alt={product.title} />
+                <span>{product.title}</span>
+              </Link>
             </li>
           ))}
         </StyledSearchProductInputList>

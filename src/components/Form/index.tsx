@@ -8,6 +8,7 @@ import {
   validateMessage,
   validateSubject,
 } from '../../utils/validation';
+import { useToast } from '../../context/ToastContext';
 
 const Container = styled.div`
   width: 100%;
@@ -41,6 +42,7 @@ const SubmitButton = styled.button`
 `;
 
 const Form = () => {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     fullname: '',
     subject: '',
@@ -84,7 +86,12 @@ const Form = () => {
       };
     });
 
-    if (canProceed()) console.log(formData);
+    if (canProceed()) {
+      showToast('Form submitted successfully!', 'success');
+      console.log(formData);
+    } else {
+      showToast('Please check your input and try again.', 'error');
+    }
   };
 
   return (
