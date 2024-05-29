@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+const StyledLoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+`;
+
 const Spinner = styled.div`
   border: 6px solid rgba(0, 0, 0, 0.1);
   width: 60px;
@@ -19,7 +26,11 @@ const Spinner = styled.div`
 `;
 
 const Loader = () => {
-  return <Spinner />;
+  return (
+    <StyledLoaderWrapper>
+      <Spinner />
+    </StyledLoaderWrapper>
+  );
 };
 
 export default Loader;

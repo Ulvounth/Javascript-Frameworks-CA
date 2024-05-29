@@ -16,12 +16,13 @@ const StyledNav = styled.nav`
 
   .nav__list.active {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background: var(--bg-tertiary);
+    padding-bottom: 2em;
   }
 
   > .nav__list {

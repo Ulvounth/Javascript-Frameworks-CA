@@ -9,10 +9,15 @@ export function useFetch<T>(url: string) {
     async function getData() {
       try {
         setIsLoading(true);
-        setIsError(false);
+
         const fetchedData = await fetch(url);
-        const json = await fetchedData.json();
-        setData(json);
+
+        if (fetchedData.ok) {
+          const data = await fetchedData.json();
+          setData(data);
+        } else {
+          throw new Error('Failed to fetch data');
+        }
       } catch (error) {
         console.log(error);
         setIsError(true);

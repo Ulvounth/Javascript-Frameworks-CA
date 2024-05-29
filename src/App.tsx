@@ -13,6 +13,7 @@ import { ProductsContext } from './context/ProductsContext';
 import { useFetch } from './hooks/useFetch';
 import { TProduct } from './pages/Products';
 import Loader from './components/Loader';
+import ErrorMessage from './components/ErrorMessage';
 
 const App = () => {
   const [cart, dispatch] = useReducer(cartReducer, []);
@@ -24,18 +25,14 @@ const App = () => {
   } = useFetch<TProduct[]>('https://api.noroff.dev/api/v1/online-shop');
 
   if (isLoading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
-  if (isError) return <div>Error</div>;
+  if (isError) return <ErrorMessage />;
 
   return (
     <ToastProvider>
-      <ProductsContext.Provider value={products}>
+      <ProductsContext.Provider value={products as TProduct[]}>
         <CartContext.Provider value={cart}>
           <CartDispatchContext.Provider value={dispatch}>
             <Routes>
