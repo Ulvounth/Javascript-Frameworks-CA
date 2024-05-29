@@ -1,4 +1,27 @@
 import { createContext, useContext, useState } from 'react';
+import styled from 'styled-components';
+
+type ToastProps = {
+  type: 'success' | 'error' | 'info';
+};
+
+const StyledToast = styled.div<ToastProps>`
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: ${({ type }) =>
+    type === 'success' ? '#4CAF50' : type === 'error' ? '#F44336' : '#2196F3'};
+  color: white;
+  padding: 12px;
+  border-radius: 4px;
+  z-index: 1000;
+`;
+
+interface ToastComponentProps {
+  message: string;
+  type: 'success' | 'error' | 'info';
+}
 
 type ToastContextType = {
   showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
@@ -39,30 +62,6 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   );
 };
 
-const Toast: React.FC<{
-  message: string;
-  type: 'success' | 'error' | 'info';
-}> = ({ message, type }) => {
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        top: '100px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        backgroundColor:
-          type === 'success'
-            ? '#4CAF50'
-            : type === 'error'
-              ? '#F44336'
-              : '#2196F3',
-        color: 'white',
-        padding: '12px',
-        borderRadius: '4px',
-        zIndex: 1000,
-      }}
-    >
-      {message}
-    </div>
-  );
+const Toast: React.FC<ToastComponentProps> = ({ message, type }) => {
+  return <StyledToast type={type}>{message}</StyledToast>;
 };

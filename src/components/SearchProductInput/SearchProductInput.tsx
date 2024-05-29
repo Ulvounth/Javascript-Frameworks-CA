@@ -10,6 +10,7 @@ type SearchProductInputProps = {
 
 const StyledSearchProductInputWrapper = styled.div`
   position: relative;
+  width: 20em;
 `;
 
 const StyledSearchProductInputList = styled.ul`
