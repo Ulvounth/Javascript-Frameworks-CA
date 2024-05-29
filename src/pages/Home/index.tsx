@@ -70,7 +70,7 @@ const Home = () => {
       <StyledSection>
         <StyledHome>
           <div>
-            <h2>Welcome to Infinity Goods!</h2>
+            <h2>Welcome to Infnity Goods!</h2>
             <p>
               Step into the season with our hottest deals yet! From stylish
               outfits to cool gadgets, find everything you need to make your
