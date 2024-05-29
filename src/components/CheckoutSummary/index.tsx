@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../Button/Button';
+import Button from '../Button';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';

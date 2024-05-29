@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Input from '../Input';
 import styled from 'styled-components';
-import Textarea from '../Textarea/Textarea';
+import Textarea from '../Textarea';
 import {
   validateEmail,
   validateFullname,

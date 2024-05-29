@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
+import Layout from './components/Layout';
 import { Product, Checkout, Contact, CheckoutSuccess, Home } from './pages';
 import {
   CartContext,

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CartIcon, Logo } from '../Icons';
 import { CartContext } from '../../context/CartContext';
 import { useContext, useState } from 'react';
-import SearchProductInput from '../SearchProductInput/SearchProductInput';
+import SearchProductInput from '../SearchProductInput';
 import { ProductsContext } from '../../context/ProductsContext';
 
 const StyledNav = styled.nav`

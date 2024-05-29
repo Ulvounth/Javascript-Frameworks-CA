@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ShoppingBagIcon } from '../../components/Icons';
 import Products from '../Products';
-import Hero from '../../components/Hero/Hero';
+import Hero from '../../components/Hero';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';

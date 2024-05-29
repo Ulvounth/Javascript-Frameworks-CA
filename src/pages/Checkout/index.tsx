@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import Product from '../../components/Product/Product';
+import Product from '../../components/Product';
 import { HashLink } from 'react-router-hash-link';
-import CheckoutTotalSumSection from '../../components/Checkout/CheckoutTotalSumSection';
+import CheckoutTotalSumSection from '../../components/CheckoutSummary';
 
 // Styled components
 const StyledSection = styled.section`
