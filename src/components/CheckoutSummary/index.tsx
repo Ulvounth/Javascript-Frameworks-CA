@@ -15,7 +15,7 @@ const CheckoutTotalSum = styled.div`
 const CheckoutTotalSumSticky = styled.div`
   position: sticky;
   top: var(--header-size);
-  padding: 2em;
+  padding: 1em;
 `;
 
 const CheckoutTotalSumHeader = styled.div`

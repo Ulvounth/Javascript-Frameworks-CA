@@ -115,7 +115,7 @@ const Product = ({ product }: ProductProps) => {
         <ProductImage src={imageUrl} alt={title} />
         <ProductImageTitle>{title}</ProductImageTitle>
       </ProductImageWrapper>
-      <ProductPrice>${price}</ProductPrice>
+      <ProductPrice>${discountedPrice}</ProductPrice>
       <ProductQuantity>
         <ProductQuantityButton onClick={handleDecreaseQuantity}>
           -

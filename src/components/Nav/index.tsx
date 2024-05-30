@@ -14,6 +14,10 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: 1005px) {
+    padding: 1em 1em;
+  }
+
   .nav__list.active {
     display: flex;
     flex-direction: column-reverse;

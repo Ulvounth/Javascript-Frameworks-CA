@@ -49,7 +49,7 @@ const CheckoutContainer = styled.section`
 `;
 
 const CheckoutProductsSection = styled.div`
-  padding: 2em;
+  padding: 1em;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;

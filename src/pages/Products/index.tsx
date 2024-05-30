@@ -123,8 +123,6 @@ type ProductsProps = {
 };
 
 const Products = ({ products }: ProductsProps) => {
-  console.log(products);
-
   return (
     <StyledSection>
       <h1 id="store">Store</h1>
