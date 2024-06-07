@@ -1,84 +1,10 @@
-import styled from 'styled-components';
+import * as Styled from './index.styles';
 import { CartDispatchContext, CartItem } from '../../context/CartContext';
 import { useContext } from 'react';
 
 type ProductProps = {
   product: CartItem;
 };
-
-const StyledProduct = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  border-bottom: 1px solid lightgrey;
-  margin-top: 1em;
-`;
-
-const ProductImageWrapper = styled.div`
-  position: relative;
-`;
-
-const ProductImage = styled.img`
-  aspect-ratio: 1/1;
-  object-fit: cover;
-`;
-
-const ProductImageTitle = styled.h3`
-  font-weight: 200;
-  margin: 1em 0;
-`;
-
-const RemoveButton = styled.button`
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
-  background-color: #ff6347;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 1.6em;
-  height: 1.6em;
-  font-size: 1rem;
-
-  &:hover {
-    background-color: #ff2c10; // Darker shade on hover
-  }
-`;
-
-const ProductPrice = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ProductQuantity = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5em;
-`;
-
-const ProductQuantityButton = styled.button`
-  background-color: var(--bg-purple);
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  width: 1.5em;
-  height: 1.5em;
-  transition: background-color 250ms ease-in-out;
-
-  &:hover {
-    background-color: var(--bg-purple-dark);
-  }
-`;
-
-const ProductsTotalPrice = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const Product = ({ product }: ProductProps) => {
   const dispatch = useContext(CartDispatchContext);
@@ -109,26 +35,26 @@ const Product = ({ product }: ProductProps) => {
   };
 
   return (
-    <StyledProduct>
-      <ProductImageWrapper>
-        <RemoveButton onClick={handleRemoveItem}>X</RemoveButton>
-        <ProductImage src={imageUrl} alt={title} />
-        <ProductImageTitle>{title}</ProductImageTitle>
-      </ProductImageWrapper>
-      <ProductPrice>${discountedPrice}</ProductPrice>
-      <ProductQuantity>
-        <ProductQuantityButton onClick={handleDecreaseQuantity}>
+    <Styled.Product>
+      <Styled.ProductImageWrapper>
+        <Styled.RemoveButton onClick={handleRemoveItem}>X</Styled.RemoveButton>
+        <Styled.ProductImage src={imageUrl} alt={title} />
+        <Styled.ProductImageTitle>{title}</Styled.ProductImageTitle>
+      </Styled.ProductImageWrapper>
+      <Styled.ProductPrice>${discountedPrice}</Styled.ProductPrice>
+      <Styled.ProductQuantity>
+        <Styled.ProductQuantityButton onClick={handleDecreaseQuantity}>
           -
-        </ProductQuantityButton>
+        </Styled.ProductQuantityButton>
         {quantity}
-        <ProductQuantityButton onClick={handleIncreaseQuantity}>
+        <Styled.ProductQuantityButton onClick={handleIncreaseQuantity}>
           +
-        </ProductQuantityButton>
-      </ProductQuantity>
-      <ProductsTotalPrice>
+        </Styled.ProductQuantityButton>
+      </Styled.ProductQuantity>
+      <Styled.ProductsTotalPrice>
         ${Number(currentPrice * quantity).toFixed(2)}
-      </ProductsTotalPrice>
-    </StyledProduct>
+      </Styled.ProductsTotalPrice>
+    </Styled.Product>
   );
 };
 

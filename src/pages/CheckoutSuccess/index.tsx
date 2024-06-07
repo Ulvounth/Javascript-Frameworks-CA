@@ -1,20 +1,7 @@
-import styled from 'styled-components';
+import * as Styled from './index.styles';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { CartDispatchContext } from '../../context/CartContext';
-
-const SuccessContainer = styled.div`
-  text-align: center;
-  padding-top: 50px;
-  @media screen and (max-width: 1005px) {
-    padding: 200px 0;
-  }
-`;
-
-const SuccessMessage = styled.h1`
-  color: #4caf50;
-  margin-bottom: 20px;
-`;
 
 const CheckoutSuccessPage = () => {
   const dispatch = useContext(CartDispatchContext);
@@ -24,11 +11,13 @@ const CheckoutSuccessPage = () => {
   }, [dispatch]);
 
   return (
-    <SuccessContainer>
-      <SuccessMessage>Your checkout was successful!</SuccessMessage>
+    <Styled.SuccessContainer>
+      <Styled.SuccessMessage>
+        Your checkout was successful!
+      </Styled.SuccessMessage>
       <p>Thank you for shopping with us.</p>
       <Link to="/">Go back to the store</Link>
-    </SuccessContainer>
+    </Styled.SuccessContainer>
   );
 };
 

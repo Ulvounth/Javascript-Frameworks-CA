@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Input from '../Input';
-import styled from 'styled-components';
+import * as Styled from './index.styles';
 import Textarea from '../Textarea';
 import {
   validateEmail,
@@ -9,37 +9,6 @@ import {
   validateSubject,
 } from '../../utils/validation';
 import { useToast } from '../../context/ToastContext';
-
-const Container = styled.div`
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-  background-color: var(--bg-tertiary);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 2em;
-  color: white;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const SubmitButton = styled.button`
-  background-color: var(--bg-purple);
-  color: white;
-  font-size: 1rem;
-  border: none;
-  padding: 0.5em 2em;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 250ms ease-in-out;
-
-  &:hover {
-    background-color: var(--bg-purple-dark);
-  }
-`;
 
 const Form = () => {
   const { showToast } = useToast();
@@ -95,8 +64,8 @@ const Form = () => {
   };
 
   return (
-    <Container>
-      <StyledForm onSubmit={handleSubmit}>
+    <Styled.Container>
+      <Styled.Form onSubmit={handleSubmit}>
         <Input
           label="Full Name"
           type="text"
@@ -139,9 +108,9 @@ const Form = () => {
           }
           required
         />
-        <SubmitButton type="submit">Send</SubmitButton>
-      </StyledForm>
-    </Container>
+        <Styled.SubmitButton type="submit">Send</Styled.SubmitButton>
+      </Styled.Form>
+    </Styled.Container>
   );
 };
 

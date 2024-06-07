@@ -1,18 +1,11 @@
-import styled from 'styled-components';
+import * as Styled from './index.styles';
 import Nav from '../Nav';
-
-const BaseHeader = styled.header`
-  background: var(--bg-tertiary);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-`;
 
 const Header = () => {
   return (
-    <BaseHeader>
+    <Styled.BaseHeader>
       <Nav />
-    </BaseHeader>
+    </Styled.BaseHeader>
   );
 };
 
