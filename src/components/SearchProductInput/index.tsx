@@ -29,7 +29,7 @@ const StyledSearchProductInputList = styled.ul`
     a {
       display: grid;
       width: 100%;
-      padding: 5px;
+      padding: 20px;
       color: black !important;
       text-decoration: none;
 
@@ -43,6 +43,12 @@ const StyledSearchProductInputList = styled.ul`
 const StyledImage = styled.img`
   object-fit: cover;
   aspect-ratio: 1/1;
+`;
+
+const StyledSpan = styled.span`
+  padding-top: 10px;
+  font-size: 1.3em;
+  font-weight: 500;
 `;
 
 const SearchProductInput = ({ products }: SearchProductInputProps) => {
@@ -80,7 +86,7 @@ const SearchProductInput = ({ products }: SearchProductInputProps) => {
             <li className="filtered-products__list-item" key={product.id}>
               <Link to={`/product/${product.id}`}>
                 <StyledImage src={product.imageUrl} alt={product.title} />
-                <span>{product.title}</span>
+                <StyledSpan>{product.title}</StyledSpan>
               </Link>
             </li>
           ))}

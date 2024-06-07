@@ -14,6 +14,7 @@ import { useFetch } from './hooks/useFetch';
 import { TProduct } from './pages/Products';
 import Loader from './components/Loader';
 import ErrorMessage from './components/ErrorMessage';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   const [cart, dispatch] = useReducer(cartReducer, []);
@@ -35,15 +36,20 @@ const App = () => {
       <ProductsContext.Provider value={products as TProduct[]}>
         <CartContext.Provider value={cart}>
           <CartDispatchContext.Provider value={dispatch}>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/product/:id" element={<Product />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/checkoutSuccess" element={<CheckoutSuccess />} />
-              </Route>
-            </Routes>
+            <ScrollToTop>
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/product/:id" element={<Product />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route
+                    path="/checkoutSuccess"
+                    element={<CheckoutSuccess />}
+                  />
+                </Route>
+              </Routes>
+            </ScrollToTop>
           </CartDispatchContext.Provider>
         </CartContext.Provider>
       </ProductsContext.Provider>
