@@ -1,9 +1,9 @@
 import * as Styled from './index.styles';
+import { Helmet } from 'react-helmet-async';
 import { useFetch } from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { TProduct } from '../Products';
 import StarRating from '../../components/StarRating';
-import useDocumentTitle from '../../hooks/useDocumentTitle';
 import Loader from '../../components/Loader';
 import { CartContext, CartDispatchContext } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
@@ -39,15 +39,10 @@ const Product = () => {
     showToast('Added to cart successfully!', 'success');
   };
 
-  useDocumentTitle(data ? `${data.title}` : 'Product');
   const reviewsLength = data?.reviews?.length ?? 0;
 
   if (isLoading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   if (isError) {
@@ -56,6 +51,19 @@ const Product = () => {
 
   return (
     <Styled.Section>
+      <Helmet>
+        <title>
+          {data ? `${data.title} | Infnity Goods` : 'Product | Infnity Goods'}
+        </title>
+        <meta
+          name="description"
+          content={
+            data
+              ? data.description
+              : 'View product details, reviews, and add to your cart.'
+          }
+        />
+      </Helmet>
       <Styled.Container>
         <Styled.ProductImage src={data?.imageUrl} alt={data?.title} />
         <Styled.ProductDescription>

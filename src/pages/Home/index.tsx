@@ -1,18 +1,27 @@
 import * as Styled from './index.styles';
+import { Helmet } from 'react-helmet-async';
 import { ShoppingBagIcon } from '../../components/Icons';
 import Products from '../Products';
 import Hero from '../../components/Hero';
-import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { useContext } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
 
 const Home = () => {
-  useDocumentTitle('Infinity Goods | Home');
-
   const products = useContext(ProductsContext);
 
   return (
     <>
+      <Helmet>
+        <title>Infnity Goods | Home</title>
+        <meta
+          name="description"
+          content="Step into the season with our hottest deals yet! From stylish outfits to cool gadgets, find everything you need to make your summer unforgettable."
+        />
+        <meta
+          name="keywords"
+          content="fashion, gadgets, deals, summer, shopping, discounts"
+        />
+      </Helmet>
       <Hero />
       <Styled.Section>
         <Styled.Home>

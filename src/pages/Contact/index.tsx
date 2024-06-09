@@ -1,11 +1,17 @@
 import * as Styled from './index.styles';
-import useDocumentTitle from '../../hooks/useDocumentTitle';
+import { Helmet } from 'react-helmet-async';
 import Form from '../../components/Form';
 
 const Contact = () => {
-  useDocumentTitle('Infinity Goods | Contact');
   return (
     <Styled.Section>
+      <Helmet>
+        <title>Infnity Goods | Contact</title>
+        <meta
+          name="description"
+          content="Get in touch with Infinity Goods! Reach out to us for any questions about our products or services."
+        />
+      </Helmet>
       <Styled.Container>
         <Styled.SectionInfo>
           <h1>Contact</h1>

@@ -8,6 +8,7 @@ import {
   cartReducer,
 } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
+import { HelmetProvider } from 'react-helmet-async';
 import { useReducer } from 'react';
 import { ProductsContext } from './context/ProductsContext';
 import { useFetch } from './hooks/useFetch';
@@ -32,28 +33,30 @@ const App = () => {
   if (isError) return <ErrorMessage />;
 
   return (
-    <ToastProvider>
-      <ProductsContext.Provider value={products as TProduct[]}>
-        <CartContext.Provider value={cart}>
-          <CartDispatchContext.Provider value={dispatch}>
-            <ScrollToTop>
-              <Routes>
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/product/:id" element={<Product />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route
-                    path="/checkoutSuccess"
-                    element={<CheckoutSuccess />}
-                  />
-                </Route>
-              </Routes>
-            </ScrollToTop>
-          </CartDispatchContext.Provider>
-        </CartContext.Provider>
-      </ProductsContext.Provider>
-    </ToastProvider>
+    <HelmetProvider>
+      <ToastProvider>
+        <ProductsContext.Provider value={products as TProduct[]}>
+          <CartContext.Provider value={cart}>
+            <CartDispatchContext.Provider value={dispatch}>
+              <ScrollToTop>
+                <Routes>
+                  <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/product/:id" element={<Product />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route
+                      path="/checkoutSuccess"
+                      element={<CheckoutSuccess />}
+                    />
+                  </Route>
+                </Routes>
+              </ScrollToTop>
+            </CartDispatchContext.Provider>
+          </CartContext.Provider>
+        </ProductsContext.Provider>
+      </ToastProvider>
+    </HelmetProvider>
   );
 };
 

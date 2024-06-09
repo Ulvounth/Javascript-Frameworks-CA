@@ -1,5 +1,5 @@
 import * as Styled from './index.styles';
-import useDocumentTitle from '../../hooks/useDocumentTitle';
+import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import Product from '../../components/Product';
@@ -8,10 +8,15 @@ import CheckoutTotalSumSection from '../../components/CheckoutSummary';
 const Checkout = () => {
   const cart = useContext(CartContext);
 
-  useDocumentTitle('Infinity Goods | Checkout');
-
   return (
     <Styled.Section>
+      <Helmet>
+        <title>Infnity Goods | Checkout</title>
+        <meta
+          name="description"
+          content="Review and complete your purchase securely. Check your cart items and proceed to payment."
+        />
+      </Helmet>
       <Styled.CheckoutContainer>
         <Styled.CheckoutProductsSection>
           <Styled.CheckoutProductsHeader>
@@ -28,9 +33,9 @@ const Checkout = () => {
               TOTAL
             </Styled.CheckoutProductsHeaderTitle>
           </Styled.CheckoutProductsHeader>
-          {cart?.map((product) => {
-            return <Product key={product.id} product={product} />;
-          })}{' '}
+          {cart?.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
           {cart?.length === 0 && <p>Your cart is empty.</p>}
           <Styled.CheckoutContinueShoppingSection>
             <Styled.CheckoutContinueShoppingLink to="/#store">
